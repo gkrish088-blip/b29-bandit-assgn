@@ -1,0 +1,188 @@
+lall passwords will be here
+
+l0 - l1 = ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+
+
+okay first of all , all levels must be played in a new terminal . for each level username is bandit<n> and password will be found in previous level .
+
+**for level 1 we had to open a file named "-" , usually when we type - shell will understand it as a -options but so to perform anything on this file we 
+need to type either -- - , because -- marks the ends of options and after -- there must be a filename . or we can use ./- , e.g cat ./- . 
+
+l1- l2 = 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+
+**for level 2 we had to open up a file which had spaces and special characters , so we use cat -- '--spaces in this filename--'
+this command '' are used to bypase the spaces and -- is used to ensure that the later is counted as a file name . 
+
+l2- l3 = MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+
+** in next level the file was hidden , so we used ls -a to list all the hidden files and knowledge of prev Q to open that 
+
+ ls -a
+.  ..  ...Hiding-From-You
+cat -- "...Hiding-From-You"
+
+l3- l4 = 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+
+** for next level we had to open up a file which had human readable text , which was pretty easy because files were less in number 
+
+4-5 = 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+
+**in this we had to filter the files based on their properties , so for that purpose we use find -<options> , now i used find . -size 1033c , where
+ find . will search all the files , -size is the option for filterting on basis of size and 1033c means 1033 bytes , we can use M for megabyte and K
+ for kilobyte .
+
+5-6 = HWasnPhtq9AVKe0dmk45nxy20cvUa6EG 
+
+**in this we have to find the password which was stored somewhere in server and the file had 3 given properties namely user size and group owned , so 
+we used find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null ,  here find / means to search in complete server , type f means regular files 
+, user finds which user owns this , and -group finds which group owns this , and size we know now . 
+
+6-7 = morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+
+
+** in the next there was a large file containing a lot of data and we have to grep the line containing that specific word , cat data.txt | grep <word>
+
+7-8 = dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+
+** for this level we were req to find the unique line in the data.txt file , so for this we first sort the file ,
+because uniq wont work otherwise , and after sorting we use uniq -u to remove the duplicate lines and preserve only 
+unique ones 
+
+8-9 = 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+
+** next was very eaasy we just have to use strings to print all the human readable ascii characters and find the one
+ with preceedinng ==
+
+9 - 10 = FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+ 
+** for next one we needed to decode the base64 encoded data in the file so we used , base64 -d <filename>
+
+10 -11 = dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+
+** for next the data was encoded in rot13 and we just needed to decode that using ,
+ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-z-a-m'
+
+11 - 12 = 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+
+
+** for next level was a complete mess , first we have to make a temp directory by mktemp -d , and copy our data file 
+into that using cp . then we will repeatedly check the file using file and do actions accorinfly is it is a gzip file
+ or bzip2 or tar . till we reach ASCII file and get the password 
+
+12 -13 = FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+
+
+** to go into next level we had to use the private key , to login into bandit14 instead of password . and password
+ for thr next level was already there . and private key for this level too .
+
+13-14 = MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+
+** for next level i had  to send this password to the local host on port 30000 , i used nc to do that . 
+
+14-15 = 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+
+** for next we have to use ncat to make a connection via ssl encryption.
+
+15-16 = kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+
+**for next level we used nmap to find which ports are open and available to ssl services using
+ nmap -p 31000-32000 localhost
+16 -17 = 
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
+imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
+Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu
+DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW
+JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX
+x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD
+KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl
+J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd
+d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC
+YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A
+vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
++TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT
+8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
+SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
+HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
+Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
+R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
+L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni
+blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU
+YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
+77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b
+dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
+vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
+-----END RSA PRIVATE KEY-----
+
+** for next we have given two files , and it was needed to find the difference between two , using
+ diff --normal <file1> <file2>
+
+17 -18 = x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+
+** for next level password was in readme but the .bashrc was modified to change login to logout , to bye pass this 
+we need to send the command with ssh -p 2220 user@host 'cat readme' , this will only execute that command .
+
+18 -19 = cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
+
+** for next we were given a file whose permissions were changed , and we could temp run
+ that with the permissions of bandit20 and go into ./etc/bandit_pass to find the password ,
+ for checking the setuid set or net we need to see the s or x in the permissions
+ for e.g - rwsx r-x --- , here we have s so we(group) can use the permisions of owner . 
+
+19 - 20 = 0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
+ 
+
+**for this we had to techically open a listening port on our local host and then use 
+suconnect to connect with that port and it will read the pass of prev one and send the
+ new one , but for this we have two options , either use jobs for which the copmmand will
+ look like echo "0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO" | nc -l -p 4322 & , here aamphersant(&)
+ sends this job to the background and we can run suconnect in same terminal , or we can 
+use tmux to have two different terminals on one screen , and do this . also not only
+ nc -l -p port is valid but also nc -lvnp port works and is more better than only making a 
+listening -l port , lvnp gives the verbose and also prevents the dns ( nodns = n ) 
+
+20 -21 = EeoULMCra2q0dSkYj561DX7s1CpBuOBt
+
+** for next we need to learn about the cron , it basically does the tasks automatically ,
+so for this we first cat the file named cronjob_bandit22 located in /etc/cron.d/ and in 
+that file we find a path to another file which contains the script and sends the ouotput
+ to null 
+and on migrating to that file we see that the script is reading a file in temp after 
+giving the permissions of bandit22 every minute . so we cat that file and get the pass 
+
+21 -22 = tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
+
+**for next one we did the same as earlier , read the script , and executed the same on my
+own terminal , by replacing myname to bandit23 , this gave the location of temp file and , 
+in that the pass .
+
+22 - 23 = 0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+
+**for this level when we read the script , it was reading a file from a specific folder and
+ if that folder contained a file owned by bandit23 , script will run it for one minute as 
+bandit24 , so main idea is to make a script in that folder (as no script can be made in
+ home , we have to cd to a new temp direc made a script that cp /etc/bandit_pas/bandit24
+to a new temp txt file and give permission of rw to that file (as this script will be
+ running with the permissions of bandit24 ) and then cat that txt file , it will contain
+ the pass  
+
+23-24 = gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
+
+**for next we had to write a script containing a loop over a 10k brute force numbers , 
+
+
+#!/bin/bash
+
+for ((i = 0 ; i < 10000 ; i++)); do
+echo "gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 $(printf '%04d' $i)"
+done | nc localhost 30002 > /tmp/tmp.KK1ULTalsy/pass25.txt
+
+
+
+here nc is done after loop because we wanted to send all 10k tries in a single connection , as making and vreaking connections takes time . 
+
+24 - 25 = iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
+
+**
